@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gowtham Crackers | Premium Festive Fireworks & Diwali Combos</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Dynamic Interactive Background Canvas -->
+  <canvas id="fireworks-canvas"></canvas>
+
+  <div class="content-wrapper">
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+      <div class="ticker-wrap">
+        <div class="ticker-item">
+          ✨ DIWALI SPECIAL OFFER: Use Coupon Code <strong style="color: #FFD700;">DIWALI50</strong> for Flat 50% OFF on All Crackers & Combos! | 100% Green Certified Fireworks Direct from Sivakasi Factory! 🚀
+        </div>
+      </div>
+      <div class="top-bar-links">
+        <a href="tel:+919876543210">📞 Helpline: +91 98765 43210</a>
+        <button id="audio-toggle-btn" class="btn-sm" style="background: rgba(255,255,255,0.15); border: 1px solid var(--primary-gold); color: #FFF; cursor: pointer; border-radius: 12px;" onclick="toggleAudio()">
+          🔊 Sound On
+        </button>
+      </div>
+    </div>
+
+    <!-- Clean Header Navbar -->
+    <header>
+      <nav class="navbar">
+        <a href="#" class="brand-logo" onclick="switchView('home')">
+          <span class="brand-icon">🎆</span>
+          <span>Gowtham<span style="color: var(--primary-gold);">Crackers</span></span>
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="#" class="nav-link active" data-view="home">Home</a></li>
+          <li><a href="#" class="nav-link" data-view="products">All Products</a></li>
+          <li><a href="#" class="nav-link" data-view="offers">Offers & Combos</a></li>
+          <li><a href="#" class="nav-link" data-view="about">About Us</a></li>
+          <li><a href="#" class="nav-link" data-view="contact">Contact Us</a></li>
+          <li><a href="#" class="nav-link" data-view="my-orders">My Orders</a></li>
+          <li><a href="#" class="nav-link" data-view="tracking">Track Order</a></li>
+        </ul>
+
+        <div class="header-actions">
+          <button class="admin-badge-btn" onclick="openAdminPortal()">
+            🔐 Admin Panel
+          </button>
+
+          <button class="btn-icon" onclick="toggleCartDrawer()">
+            🛒
+            <span class="cart-badge" id="cart-badge-count">0</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- STANDALONE SEARCH BAR SECTION (Directly Below Navbar) -->
+    <section class="standalone-search-section">
+      <div class="standalone-search-container">
+        <div class="standalone-search-box">
+          <span class="standalone-search-icon">🔍</span>
+          <input type="text" id="global-search-input" class="standalone-search-input" placeholder="Search sparklers, flowerpots, rockets, ground chakkars, aerial shots..." />
+          <button class="standalone-search-btn" onclick="switchView('products')">Search Fireworks</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Views Container -->
+    <main class="container">
+
+      <!-- ================= HOME VIEW ================= -->
+      <section id="view-home" class="view-section active">
+        <div class="hero-section">
+          <div class="hero-content">
+            <div class="festive-tag">✨ SIVAKASI DIRECT FACTORY PRICING</div>
+            <h1 class="hero-title">Light Up Your Celebrations with <span class="gradient-text">Gowtham Crackers</span></h1>
+            <p class="hero-description">
+              India's most trusted online store for 100% Eco-Friendly Green Crackers, Sky Rockets, Ground Fountains, and Exclusive Diwali Mega Family Combo Hamper Packs.
+            </p>
+
+            <div class="hero-cta">
+              <button class="btn-primary" onclick="switchView('products')">
+                🛒 Explore All Products
+              </button>
+              <button class="btn-secondary" onclick="switchView('offers')">
+                🎁 Diwali Combo Offers
+              </button>
+            </div>
+
+            <!-- Countdown Timer Banner for Active Offers -->
+            <div class="countdown-box" id="hero-countdown-box">
+              <div>
+                <div class="countdown-title" id="hero-offer-title">Diwali Dhamaka Offer Ends In:</div>
+              </div>
+              <div class="timer-units">
+                <div class="timer-unit">
+                  <div class="timer-val" id="timer-days">29</div>
+                  <div class="timer-label">Days</div>
+                </div>
+                <div class="timer-unit">
+                  <div class="timer-val" id="timer-hours">14</div>
+                  <div class="timer-label">Hours</div>
+                </div>
+                <div class="timer-unit">
+                  <div class="timer-val" id="timer-mins">32</div>
+                  <div class="timer-label">Mins</div>
+                </div>
+                <div class="timer-unit">
+                  <div class="timer-val" id="timer-secs">45</div>
+                  <div class="timer-label">Secs</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-media">
+            <div class="hero-img-wrapper">
+              <img src="assets/images/hero_banner.jpg" alt="Diwali Fireworks Banner" />
+              <div class="hero-badge-float">
+                <span class="badge-icon">🌿</span>
+                <div class="badge-text">
+                  <strong>100% Eco-Green Certified</strong>
+                  <span>Approved by Govt Safety Standards</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Showcase -->
+        <div class="section-header">
+          <div class="section-subtitle">EXPLORE BY CATEGORY</div>
+          <h2 class="section-title">Popular Fireworks Categories</h2>
+        </div>
+
+        <div class="category-grid">
+          <div class="category-card" onclick="selectCategory('sparklers')">
+            <span class="category-icon">✨</span>
+            <h4 class="category-name">Sparklers</h4>
+            <span class="category-count">Handheld Lights</span>
+          </div>
+          <div class="category-card" onclick="selectCategory('flowerpots')">
+            <span class="category-icon">🌋</span>
+            <h4 class="category-name">Flower Pots</h4>
+            <span class="category-count">Fountains</span>
+          </div>
+          <div class="category-card" onclick="selectCategory('rockets')">
+            <span class="category-icon">🚀</span>
+            <h4 class="category-name">Sky Rockets</h4>
+            <span class="category-count">Sky Blasters</span>
+          </div>
+          <div class="category-card" onclick="selectCategory('aerial_shots')">
+            <span class="category-icon">🎆</span>
+            <h4 class="category-name">Aerial Shots</h4>
+            <span class="category-count">Multi-Shot Display</span>
+          </div>
+          <div class="category-card" onclick="selectCategory('sound_crackers')">
+            <span class="category-icon">💥</span>
+            <h4 class="category-name">Sound Crackers</h4>
+            <span class="category-count">Maroons & Garlands</span>
+          </div>
+          <div class="category-card" onclick="selectCategory('combo_boxes')">
+            <span class="category-icon">🎁</span>
+            <h4 class="category-name">Gift Boxes</h4>
+            <span class="category-count">Mega Family Packs</span>
+          </div>
+        </div>
+
+        <!-- Trust Highlights Bar -->
+        <div class="features-bar">
+          <div class="feature-item">
+            <div class="feature-icon-wrapper">📦</div>
+            <div class="feature-info">
+              <h4>Direct Sivakasi Pricing</h4>
+              <p>Save up to 50% with factory direct wholesale rates.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon-wrapper">🌿</div>
+            <div class="feature-info">
+              <h4>Green Crackers Only</h4>
+              <p>Low smoke & zero heavy metal safe formulations.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon-wrapper">🚚</div>
+            <div class="feature-info">
+              <h4>Express Safe Delivery</h4>
+              <p>Secure shock-proof door step packaging across India.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PRODUCTS CATALOG VIEW ================= -->
+      <section id="view-products" class="view-section">
+        <div class="section-header" style="margin-top: 30px;">
+          <div class="section-subtitle">OUR FULL COLLECTION</div>
+          <h2 class="section-title">All Fireworks & Crackers Catalog</h2>
+        </div>
+
+        <div class="catalog-layout">
+          <!-- Sidebar Filters -->
+          <aside class="filters-sidebar">
+            <div class="filter-group">
+              <div class="filter-title">Filter by Category</div>
+              <ul class="filter-list">
+                <li class="filter-item">
+                  <label class="filter-label">
+                    <input type="radio" name="cat-radio" checked onclick="selectCategory('all')" /> All Products
+                  </label>
+                </li>
+                <li class="filter-item">
+                  <label class="filter-label">
+                    <input type="radio" name="cat-radio" onclick="selectCategory('sparklers')" /> ✨ Sparklers
+                  </label>
+                </li>
+                <li class="filter-item">
+                  <label class="filter-label">
+                    <input type="radio" name="cat-radio" onclick="selectCategory('flowerpots')" /> 🌋 Flower Pots
+                  </label>
+                </li>
+                <li class="filter-item">
+                  <label class="filter-label">
+                    <input type="radio" name="cat-radio" onclick="selectCategory('rockets')" /> 🚀 Sky Rockets
+                  </label>
+                </li>
+                <li class="filter-item">
+                  <label class="filter-label">
+                    <input type="radio" name="cat-radio" onclick="selectCategory('aerial_shots')" /> 🎆 Aerial Shots
+                  </label>
+                </li>
+                <li class="filter-item">
+                  <label class="filter-label">
+                    <input type="radio" name="cat-radio" onclick="selectCategory('sound_crackers')" /> 💥 Sound Crackers
+                  </label>
+                </li>
+                <li class="filter-item">
+                  <label class="filter-label">
+                    <input type="radio" name="cat-radio" onclick="selectCategory('combo_boxes')" /> 🎁 Combo Boxes
+                  </label>
+                </li>
+              </ul>
+            </div>
+
+            <div class="filter-group">
+              <div class="filter-title">
+                <span>Max Price</span>
+                <span id="max-price-val" style="color: #FFF;">₹10000</span>
+              </div>
+              <div class="price-slider-box">
+                <input type="range" id="price-range-slider" class="price-range-input" min="100" max="10000" step="100" value="10000" />
+                <div class="price-val-display">
+                  <span>₹100</span>
+                  <span>₹10,000</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <div class="filter-title">Eco Certification</div>
+              <label class="filter-label">
+                <input type="checkbox" id="eco-filter-check" class="filter-checkbox" /> 🌿 Eco Green Certified Only
+              </label>
+            </div>
+          </aside>
+
+          <!-- Products Main Area -->
+          <div>
+            <div class="products-top-bar">
+              <span class="results-count" id="results-count-display">Showing 10 Fireworks</span>
+              <div>
+                <label style="font-size: 0.88rem; color: var(--text-sub); margin-right: 8px;">Sort by:</label>
+                <select id="sort-products-select" class="sort-select">
+                  <option value="featured">🔥 Featured & Best Sellers</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="rating">Highest Rated</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="product-grid" id="products-grid-container">
+              <!-- Dynamically rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= OFFERS & COMBOS VIEW ================= -->
+      <section id="view-offers" class="view-section">
+        <div class="section-header" style="margin-top: 30px;">
+          <div class="section-subtitle">SPECIAL OFFERS & PROMOTIONS</div>
+          <h2 class="section-title">Active Festive Deals</h2>
+        </div>
+
+        <div id="offers-list-container">
+          <!-- Dynamically rendered via JS -->
+        </div>
+      </section>
+
+      <!-- ================= CHECKOUT & DELIVERY DETAILS VIEW ================= -->
+      <section id="view-checkout" class="view-section">
+        <div class="section-header" style="margin-top: 30px;">
+          <div class="section-subtitle">STEP 2 OF 3</div>
+          <h2 class="section-title">Delivery & Shipping Address Details</h2>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 30px; align-items: start;">
+          <div class="contact-form-card">
+            <h3 style="color: var(--primary-gold); margin-bottom: 20px;">Shipping Information</h3>
+            <form id="checkout-delivery-form">
+              <div class="form-group">
+                <label class="form-label">Full Name *</label>
+                <input type="text" id="del-name" class="form-input" placeholder="e.g. Gowtham Kumar" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Mobile Number *</label>
+                <input type="tel" id="del-phone" class="form-input" placeholder="10-digit mobile number" pattern="[0-9]{10}" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">House / Flat / Door Number & Building *</label>
+                <input type="text" id="del-address" class="form-input" placeholder="Door No 42, Green Park Apartments" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Area / Street / Landmark *</label>
+                <input type="text" id="del-area" class="form-input" placeholder="Near Temple Street" required />
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+                <div class="form-group">
+                  <label class="form-label">City *</label>
+                  <input type="text" id="del-city" class="form-input" placeholder="Sivakasi / Chennai" required />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">State *</label>
+                  <input type="text" id="del-state" class="form-input" placeholder="Tamil Nadu" required />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Pincode *</label>
+                  <input type="text" id="del-pincode" class="form-input" placeholder="626123" pattern="[0-9]{6}" required />
+                </div>
+              </div>
+
+              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
+                💳 Proceed to Payment
+              </button>
+            </form>
+          </div>
+
+          <!-- Checkout Order Summary -->
+          <div class="story-card">
+            <h3 style="color: var(--primary-gold); margin-bottom: 16px;">Order Summary</h3>
+            <div id="checkout-items-summary" style="margin-bottom: 20px;">
+              <!-- Rendered JS -->
+            </div>
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span id="checkout-subtotal-val">₹0</span>
+            </div>
+            <div class="summary-row">
+              <span>Discount</span>
+              <span id="checkout-discount-val" style="color: var(--accent-emerald);">-₹0</span>
+            </div>
+            <div class="summary-row">
+              <span>Delivery Fee</span>
+              <span style="color: var(--accent-emerald);">FREE</span>
+            </div>
+            <div class="summary-row total">
+              <span>Payable Total</span>
+              <span id="checkout-total-val">₹0</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ORDER TRACKING VIEW ================= -->
+      <section id="view-tracking" class="view-section">
+        <div class="section-header" style="margin-top: 30px;">
+          <div class="section-subtitle">LIVE STATUS</div>
+          <h2 class="section-title">Order Delivery Tracking</h2>
+        </div>
+
+        <div style="max-width: 600px; margin: 0 auto 40px;">
+          <div style="display: flex; gap: 10px;">
+            <input type="text" id="tracking-search-input" class="form-input" placeholder="Enter Order ID (e.g. GOW-584920)" />
+            <button class="btn-primary" onclick="trackOrderSubmit()">Search Status</button>
+          </div>
+        </div>
+
+        <div id="tracking-results-card" style="display: none;">
+          <!-- Dynamically rendered tracking content via JS -->
+        </div>
+      </section>
+
+      <!-- ================= MY ORDERS VIEW ================= -->
+      <section id="view-my-orders" class="view-section">
+        <div class="section-header" style="margin-top: 30px;">
+          <div class="section-subtitle">YOUR PURCHASES</div>
+          <h2 class="section-title">My Orders History</h2>
+        </div>
+
+        <div id="my-orders-list-container">
+          <!-- Dynamically rendered via JS -->
+        </div>
+      </section>
+
+      <!-- ================= ADMIN PANEL VIEW ================= -->
+      <section id="view-admin" class="view-section">
+        <div class="section-header" style="margin-top: 30px;">
+          <div class="section-subtitle">ADMINISTRATOR CONTROL PANEL</div>
+          <h2 class="section-title">Store Management Dashboard</h2>
+        </div>
+
+        <div class="admin-tabs">
+          <button class="admin-tab-btn active" onclick="switchAdminTab('products')">📦 Manage Products</button>
+          <button class="admin-tab-btn" onclick="switchAdminTab('offers')">🎁 Manage Offers</button>
+          <button class="admin-tab-btn" onclick="switchAdminTab('shop')">🏬 Manage Shop Details</button>
+          <button class="admin-tab-btn" onclick="switchAdminTab('orders')">🚚 Customer Orders</button>
+        </div>
+
+        <!-- Admin Tab 1: Products -->
+        <div id="admin-tab-products" class="admin-tab-content">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3>Product Catalog Management</h3>
+            <button class="btn-primary btn-sm" onclick="openAddProductModal()">+ Add New Cracker</button>
+          </div>
+          <div class="admin-table-container">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Old Price</th>
+                  <th>Stock Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-products-table-body">
+                <!-- Rendered JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Admin Tab 2: Offers -->
+        <div id="admin-tab-offers" class="admin-tab-content" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3>Diwali Offers & Combo Deals</h3>
+            <button class="btn-primary btn-sm" onclick="openAddOfferModal()">+ Add New Offer</button>
+          </div>
+          <div class="admin-table-container">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Offer Title</th>
+                  <th>Discount %</th>
+                  <th>Coupon Code</th>
+                  <th>Start Time</th>
+                  <th>End Time</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-offers-table-body">
+                <!-- Rendered JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Admin Tab 3: Shop Details -->
+        <div id="admin-tab-shop" class="admin-tab-content" style="display: none;">
+          <div class="story-card" style="max-width: 700px; margin: 0 auto;">
+            <h3 style="color: var(--primary-gold); margin-bottom: 20px;">Update Store Information</h3>
+            <form id="admin-shop-form" onsubmit="saveShopDetailsAdmin(event)">
+              <div class="form-group">
+                <label class="form-label">Shop Name</label>
+                <input type="text" id="admin-shop-name" class="form-input" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Address</label>
+                <textarea id="admin-shop-address" class="form-textarea" rows="2" required></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input type="text" id="admin-shop-phone" class="form-input" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" id="admin-shop-email" class="form-input" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Opening Hours</label>
+                <input type="text" id="admin-shop-hours" class="form-input" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Google Maps URL</label>
+                <input type="url" id="admin-shop-maps" class="form-input" required />
+              </div>
+              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">💾 Save Shop Details</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Admin Tab 4: Customer Orders -->
+        <div id="admin-tab-orders" class="admin-tab-content" style="display: none;">
+          <h3>Customer Orders & Delivery Dispatch</h3>
+          <div class="admin-table-container" style="margin-top: 16px;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Order ID & Date</th>
+                  <th>Customer Name & Phone</th>
+                  <th>Delivery Address</th>
+                  <th>Items & Total</th>
+                  <th>Current Status</th>
+                  <th>Update Delivery Status</th>
+                </tr>
+              </thead>
+              <tbody id="admin-orders-table-body">
+                <!-- Rendered JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ABOUT US VIEW ================= -->
+      <section id="view-about" class="view-section">
+        <div class="about-hero">
+          <div>
+            <span class="section-subtitle">OUR HERITAGE & TRUST</span>
+            <h2 class="section-title" style="text-align: left; margin-bottom: 16px;">Sivakasi's Most Trusted Fireworks Maker</h2>
+            <p style="color: var(--text-sub); font-size: 1.05rem; margin-bottom: 24px;">
+              For over a decade, Gowtham Crackers has been illuminating millions of Indian homes with high quality, govt-certified green fireworks direct from the heart of Sivakasi.
+            </p>
+            <button class="btn-primary" onclick="switchView('products')">Explore Our Collection</button>
+          </div>
+
+          <div class="story-card">
+            <h3 style="color: var(--primary-gold); margin-bottom: 12px;">🌿 Why Choose Gowtham Crackers?</h3>
+            <ul style="list-style: none; color: var(--text-sub); display: flex; flex-direction: column; gap: 10px;">
+              <li>✓ <strong>100% Green Certified:</strong> Environment friendly low smoke pyrotechnics.</li>
+              <li>✓ <strong>Sivakasi Direct Pricing:</strong> Guaranteed lowest wholesale rates without middleman margins.</li>
+              <li>✓ <strong>Quality Tested:</strong> 3-stage safety inspection before dispatch.</li>
+              <li>✓ <strong>Nationwide Shipping:</strong> Doorstep safe courier delivery across all pin codes in India.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Years of Trust</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">50,000+</div>
+            <div class="stat-label">Happy Families</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Green Compliant</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Customer Support</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CONTACT US & SHOP DETAILS VIEW ================= -->
+      <section id="view-contact" class="view-section">
+        <div class="section-header" style="margin-top: 30px;">
+          <div class="section-subtitle">GET IN TOUCH & VISIT US</div>
+          <h2 class="section-title">Shop Details & Location</h2>
+        </div>
+
+        <div class="contact-layout">
+          <!-- Shop Details View (Customer View) -->
+          <div class="contact-info-card" id="customer-shop-details-card">
+            <!-- Dynamically populated from shop details state -->
+          </div>
+
+          <div class="contact-form-card">
+            <h3 style="color: var(--primary-gold); margin-bottom: 20px;">Send Us an Inquiry</h3>
+            <form id="gowtham-contact-form">
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input" placeholder="Enter your full name" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone / WhatsApp Number</label>
+                <input type="tel" class="form-input" placeholder="Enter your mobile number" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-input" placeholder="Enter your email" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Message / Bulk Inquiry Details</label>
+                <textarea class="form-textarea" rows="4" placeholder="Tell us what you are looking for..." required></textarea>
+              </div>
+              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                🚀 Submit Inquiry
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="#" class="brand-logo">
+              <span class="brand-icon">🎆</span>
+              <span>Gowtham<span style="color: var(--primary-gold);">Crackers</span></span>
+            </a>
+            <p>India's leading online fireworks direct seller bringing festive lights, happiness, and safety to your doorstep.</p>
+          </div>
+
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="#" onclick="switchView('home')">Home</a></li>
+              <li><a href="#" onclick="switchView('products')">All Products</a></li>
+              <li><a href="#" onclick="switchView('offers')">Diwali Offers</a></li>
+              <li><a href="#" onclick="switchView('my-orders')">My Orders</a></li>
+              <li><a href="#" onclick="switchView('contact')">Shop Location</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Categories</h4>
+            <ul class="footer-links">
+              <li><a href="#" onclick="selectCategory('sparklers')">Hand Sparklers</a></li>
+              <li><a href="#" onclick="selectCategory('flowerpots')">Flower Pots</a></li>
+              <li><a href="#" onclick="selectCategory('rockets')">Sky Rockets</a></li>
+              <li><a href="#" onclick="selectCategory('aerial_shots')">Aerial Multi-shot</a></li>
+              <li><a href="#" onclick="selectCategory('combo_boxes')">Gift Hampers</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Online Payment Supported</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">UPI, GPay, PhonePe, Cards, NetBanking, Cash on Delivery</p>
+            <div style="font-size: 1.5rem; display: flex; gap: 10px;">
+              💳 📱 🏦 📦
+            </div>
+            <button class="btn-secondary btn-sm" style="margin-top: 14px;" onclick="openAdminPortal()">🔐 Admin Login</button>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          &copy; 2026 Gowtham Crackers. All Rights Reserved. Sivakasi Direct Factory Outlet.
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Cart Slide-Over Drawer -->
+  <div class="cart-drawer-overlay" id="cart-drawer-overlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3 class="cart-title">🛒 Your Shopping Cart</h3>
+        <button class="close-btn" onclick="toggleCartDrawer()">✕</button>
+      </div>
+
+      <div class="cart-body" id="cart-drawer-body">
+        <!-- Dynamically rendered JS items -->
+      </div>
+
+      <div class="cart-footer">
+        <div class="promo-input-group">
+          <input type="text" id="promo-code-input" placeholder="Promo Code (e.g. DIWALI50)" />
+          <button class="btn-secondary btn-sm" onclick="applyCouponCode()">Apply</button>
+        </div>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="cart-subtotal-val">₹0</span>
+        </div>
+        <div class="summary-row">
+          <span>Discount</span>
+          <span id="cart-discount-val" style="color: var(--accent-emerald);">-₹0</span>
+        </div>
+        <div class="summary-row total">
+          <span>Grand Total</span>
+          <span id="cart-total-val">₹0</span>
+        </div>
+
+        <button class="btn-primary" style="width: 100%; justify-content: center; margin-top: 16px;" onclick="proceedToCheckoutFlow()">
+          📋 Proceed to Delivery Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick View Modal -->
+  <div class="modal-overlay" id="quickview-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="color: var(--primary-gold);">Fireworks Quick Preview</h3>
+        <button class="close-btn" onclick="closeQuickView()">✕</button>
+      </div>
+      <div class="modal-body" id="quickview-modal-body">
+        <!-- Rendered JS Content -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Multi-Tab Payment Gateway Modal -->
+  <div class="modal-overlay" id="payment-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="color: var(--primary-gold);">Secure Online Payment Gateway</h3>
+        <button class="close-btn" onclick="closePaymentModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="payment-tabs">
+          <button class="pay-tab-btn active" data-tab="upi" onclick="switchPaymentTab('upi')">📱 UPI / QR</button>
+          <button class="pay-tab-btn" data-tab="card" onclick="switchPaymentTab('card')">💳 Card</button>
+          <button class="pay-tab-btn" data-tab="netbanking" onclick="switchPaymentTab('netbanking')">🏦 NetBanking</button>
+          <button class="pay-tab-btn" data-tab="cod" onclick="switchPaymentTab('cod')">📦 COD</button>
+        </div>
+
+        <div id="payment-tab-content">
+          <!-- Rendered payment tab via JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Printable Digital Invoice Receipt Modal -->
+  <div class="modal-overlay" id="invoice-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="color: var(--primary-gold);">🎉 Order Confirmed!</h3>
+        <div>
+          <button class="btn-secondary btn-sm" onclick="window.print()" style="margin-right: 10px;">🖨️ Print Invoice</button>
+          <button class="close-btn" onclick="closeInvoiceModal()">✕</button>
+        </div>
+      </div>
+      <div class="modal-body" id="invoice-modal-content">
+        <!-- Rendered Printable Invoice via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Login Password Modal -->
+  <div class="modal-overlay" id="admin-login-modal">
+    <div class="modal-card" style="max-width: 420px;">
+      <div class="modal-header">
+        <h3 style="color: var(--primary-gold);">Administrator Login</h3>
+        <button class="close-btn" onclick="closeAdminLoginModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="handleAdminLogin(event)">
+          <div class="form-group">
+            <label class="form-label">Username</label>
+            <input type="text" id="admin-user-input" class="form-input" placeholder="admin" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" id="admin-pass-input" class="form-input" placeholder="admin123" required />
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Unlock Admin Portal</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Add/Edit Product Modal -->
+  <div class="modal-overlay" id="product-form-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="color: var(--primary-gold);" id="product-modal-title">Add New Product</h3>
+        <button class="close-btn" onclick="closeProductFormModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="admin-product-form" onsubmit="saveProductAdmin(event)">
+          <input type="hidden" id="prod-edit-id" />
+          <div class="form-group">
+            <label class="form-label">Cracker Name *</label>
+            <input type="text" id="prod-name" class="form-input" required />
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">Category *</label>
+              <select id="prod-category" class="form-select" required>
+                <option value="sparklers">Sparklers</option>
+                <option value="flowerpots">Flower Pots</option>
+                <option value="rockets">Sky Rockets</option>
+                <option value="aerial_shots">Aerial Shots</option>
+                <option value="sound_crackers">Sound Crackers</option>
+                <option value="combo_boxes">Combo Boxes</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Stock Status *</label>
+              <select id="prod-in-stock" class="form-select" required>
+                <option value="true">In Stock</option>
+                <option value="false">Out of Stock</option>
+              </select>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">Selling Price (₹) *</label>
+              <input type="number" id="prod-price" class="form-input" min="1" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Original Price (₹) *</label>
+              <input type="number" id="prod-old-price" class="form-input" min="1" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Product Image URL *</label>
+            <input type="text" id="prod-image" class="form-input" placeholder="assets/images/sparklers.jpg" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea id="prod-description" class="form-textarea" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Save Cracker Product</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Add/Edit Offer Modal -->
+  <div class="modal-overlay" id="offer-form-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="color: var(--primary-gold);" id="offer-modal-title">Add Special Offer</h3>
+        <button class="close-btn" onclick="closeOfferFormModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="admin-offer-form" onsubmit="saveOfferAdmin(event)">
+          <input type="hidden" id="offer-edit-id" />
+          <div class="form-group">
+            <label class="form-label">Offer Title *</label>
+            <input type="text" id="offer-title" class="form-input" required />
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">Discount % *</label>
+              <input type="number" id="offer-discount" class="form-input" min="1" max="100" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Coupon Code *</label>
+              <input type="text" id="offer-code" class="form-input" required />
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label">Start Date/Time *</label>
+              <input type="datetime-local" id="offer-start-time" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">End Date/Time *</label>
+              <input type="datetime-local" id="offer-end-time" class="form-input" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Status *</label>
+            <select id="offer-status" class="form-select">
+              <option value="true">Enabled</option>
+              <option value="false">Disabled</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Save Festive Offer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- App Script -->
+  <script src="app.js"></script>
+</body>
+</html>
